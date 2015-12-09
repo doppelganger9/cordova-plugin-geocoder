@@ -102,10 +102,33 @@ public class CDVGeocoder extends CordovaPlugin {
 
 		coords.put("latitude", addr.getLatitude());
 		coords.put("longitude", addr.getLongitude());
-		coords.put("address", addr.getAddressLine(0) +" "+ addr.getAddressLine(1)+" "+addr.getAddressLine(2));
 
-		//System.out.print(coords);
+        String addressStr = getAddressAsString(addr);
+        if (addressStr != null) {
+            coords.put("address", addressStr);
+        }
 
-		return coords;
-	}
+        return coords;
+    }
+
+    private String getAddressAsString(Address addr) {
+
+        String addressStr = null;
+
+        int i = addr.getMaxAddressLineIndex();
+
+        if (i >= 0) {
+            addressStr = addr.getAddressLine(0);
+
+            int j = 1;
+
+            while (j <= i) {
+                addressStr += ", ";
+                addressStr += addr.getAddressLine(j);
+                j++;
+            }
+
+        }
+        return addressStr;
+    }
 }
