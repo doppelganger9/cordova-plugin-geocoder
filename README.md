@@ -1,11 +1,9 @@
 
-# org.beuckman.geocoder
+# Apache Cordova Geocoder Plugin
 
 ## Installation
 
-    git clone git@github.com:jbeuckm/cordova-plugin-geocoder.git
-    cd myproject
-    cordova plugin add ../cordova-plugin-geocoder
+    cordova plugin add https://github.com/doppelganger9/cordova-plugin-geocoder
 
 ## Supported Platforms
 

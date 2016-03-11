@@ -2,14 +2,6 @@
 
 @implementation CDVGeocoder
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView
-{
-    self = (CDVGeocoder*)[super initWithWebView:(UIWebView*)theWebView];
-
-    return self;
-}
-
-
 - (void)geocodeString:(CDVInvokedUrlCommand*)command
 {
     NSString* callbackId = command.callbackId;
@@ -82,16 +74,6 @@
                          [NSNumber numberWithDouble:aPlace.location.coordinate.longitude ], @"longitude",
                          addressString, @"address", nil];
     return loc;
-}
-
-- (void)dealloc
-{
-
-}
-
-- (void)onReset
-{
-
 }
 
 @end
