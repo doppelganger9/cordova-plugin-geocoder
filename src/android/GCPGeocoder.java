@@ -1,4 +1,4 @@
-package org.beuckman.geocoder;
+package org.apache.cordova.geocoder;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -17,7 +17,7 @@ import android.location.Address;
  * This Cordova Plugin class returns a JSON Object
  * or Array containing the geocoded coordinates.
  */
-public class CDVGeocoder extends CordovaPlugin {
+public class GCPGeocoder extends CordovaPlugin {
     Geocoder geocoder;
 
 	private static final int MAX_NB_ITERATIONS = 10;
@@ -25,7 +25,7 @@ public class CDVGeocoder extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-		//System.out.print("CDVGeocoder initialize");
+		//System.out.print("GCPGeocoder initialize");
 
 		// we only need to instantiate the geocoder object once.
         geocoder  = new Geocoder(cordova.getActivity().getApplicationContext());
@@ -41,7 +41,15 @@ public class CDVGeocoder extends CordovaPlugin {
 				// optional parameter, defaults to 1.
 				nbMaxResults = args.getInt(1);
 			}
+			
             this.geocodeString(addressString, nbMaxResults, callbackContext);
+            return true;
+            
+        } else if (action.equals("reverseGeocodeLatLong")) {
+            String latitude = args.getString(0);
+            String longitude = args.getString(1);
+            
+            this.reverseGeocodeLatLong(latitude, longitude, callbackContext);
             return true;
         }
 
@@ -92,6 +100,26 @@ public class CDVGeocoder extends CordovaPlugin {
 
         } else {
             callbackContext.error("Expected a non-empty string as first argument.");
+        }
+    }
+    
+    private void reverseGeocodeLatLong(String latitude, String longitude, CallbackContext callbackContext) throws JSONException {
+        if (latitude != null && latitude.length() > 0 && longitude != null && longitude.length() > 0) {
+            try {
+                List<Address> geoResults = geocoder.getFromLocation(Double.parseDouble(latitude), Double.parseDouble(longitude), 1);
+                if (geoResults.size() > 0) {
+                    callbackContext.success(createJSONAddress(geoResults.get(0)));
+                }
+                else{
+                    callbackContext.error("no address found !");
+                }
+            }
+            catch (Exception e) {
+                callbackContext.error(e.getMessage());
+            }
+        }
+        else {
+            callbackContext.error("Expected a non-empty string as first or second argument.");
         }
     }
 

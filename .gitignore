@@ -14,7 +14,9 @@ Thumbs.db
 
 .idea
 
-
+sample/platforms
+sample/plugins
+sample/.idea
 
 
 

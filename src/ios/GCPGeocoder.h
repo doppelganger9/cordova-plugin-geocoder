@@ -3,8 +3,9 @@
 #import <Cordova/CDVPlugin.h>
 
 
-@interface CDVGeocoder : CDVPlugin {}
+@interface GCPGeocoder : CDVPlugin {}
 
 - (void)geocodeString:(CDVInvokedUrlCommand*)command;
+- (void)reverseGeocodeLatLong:(CDVInvokedUrlCommand*)command;
 
 @end
