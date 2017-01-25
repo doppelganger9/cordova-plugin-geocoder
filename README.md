@@ -88,6 +88,7 @@ To Forward geocode a given address to find coordinates.
 ### Sample response
 
 For iOS platform :
+
     {
         "street": "Rue de Paras",
         "country": "France",
@@ -101,6 +102,7 @@ For iOS platform :
     }
 
 For android platform :
+
     {
         "lat": 48.8561594,
         "lng": 2.4254903,
@@ -138,6 +140,7 @@ To forward geocode a given address with multiple results.
 ### Sample response
 
 For iOS platform :
+
     [{
         "street": "Rue de Paras",
         "country": "France",
@@ -162,6 +165,7 @@ For iOS platform :
 
 
 For android platform :
+
     [{
         "lat": 48.8561594,
         "lng": 2.4254903,
@@ -209,6 +213,7 @@ To reverse geocode a given Latitude, Longitude position to find a corresponding 
 ### Sample response
 
 For iOS platform :
+
     {
         "street": "Baker Street",
         "country": "United Kingdom",
@@ -222,6 +227,7 @@ For iOS platform :
     }
     
 For android platform :
+
     {
         "lat": 51.5237737,
         "lng": -0.1585369,
