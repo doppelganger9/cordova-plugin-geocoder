@@ -1,7 +1,13 @@
-
-var argscheck = require('cordova/argscheck'),
-    utils = require('cordova/utils'),
-    exec = require('cordova/exec');
+/**
+ * geocoder.js -- Apache Cordova Geocoder Plugin / cordova plugin javascript bridge.
+ *
+ * Copyright (C) 2017 David LACOURT
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ */
+ 
+var exec = require('cordova/exec');
     
 var Geocoder = {
     /**

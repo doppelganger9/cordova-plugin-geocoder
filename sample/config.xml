@@ -4,7 +4,7 @@
     <description>
         A sample Apache Cordova application that shows cordova-plugin-geocoder usage.
     </description>
-    <content src="index.html" />
+    <content src="cdvtests/index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -23,4 +23,6 @@
     <plugin name="cordova-plugin-geocoder" spec=".." />
     <engine name="android" spec="~6.0.0" />
     <engine name="ios" spec="~4.3.1" />
+    <plugin name="cordova-plugin-test-framework" spec="~1.1.4" />
+    <plugin name="cordova-plugin-geocoder-tests" spec="../tests" />
 </widget>

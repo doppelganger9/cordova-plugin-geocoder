@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Apache Cordova Geocoder Plugin / Plugin definition file.
+ 
+  Copyright (C) 2017 David LACOURT
+ 
+  This software may be modified and distributed under the terms
+  of the MIT license.  See the LICENSE file for details.
+-->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-xmlns:rim="http://www.blackberry.com/ns/widgets"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="cordova-plugin-geocoder"
-      version="0.2.1">
+      version="1.2.2-dev">
 
     <name>Geocoder</name>
+    <license>MIT</license>
     <description>Cordova Geocoder Plugin</description>
     <keywords>cordova,geolocation,geocoder</keywords>
-    <repo>git@github.com:doppelganger9/cordova-plugin-geocoder.git</repo>
+    <repo>https://github.com/doppelganger9/cordova-plugin-geocoder</repo>
+    <issue>https://github.com/doppelganger9/cordova-plugin-geocoder/issues</issue>
+
+    <engines>
+      <engine name="cordova-android" version=">=5.1.0" />
+      <engine name="cordova-ios" version=">=4.0.0" />
+    </engines>
+
 
     <js-module src="www/geocoder.js" name="geocoder">
         <clobbers target="navigator.geocoder" />
@@ -16,7 +31,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     
     <!-- android -->
     <platform name="android">
-
         <config-file target="config.xml" parent="/*">
             <feature name="Geocoder">
                 <param name="android-package" value="org.apache.cordova.geocoder.GCPGeocoder" />
@@ -24,13 +38,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </config-file>
         
         <source-file src="src/android/GCPGeocoder.java" target-dir="src/org/apache/cordova/geocoder" />
-                 
     </platform>
-
     
     <!-- ios -->
     <platform name="ios">
-
         <config-file target="config.xml" parent="/*">
 	        <feature name="Geocoder">
 	            <param name="ios-package" value="GCPGeocoder"/>
@@ -42,9 +53,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         <framework src="CoreLocation.framework" />
         <framework src="MapKit.framework" />
-
     </platform>
-
-
 
 </plugin>

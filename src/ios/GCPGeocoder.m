@@ -1,3 +1,11 @@
+/**
+ * GCPGeocoder.m -- Apache Cordova Geocoder Plugin / iOS platform implementation.
+ *
+ * Copyright (C) 2017 David LACOURT
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ */
 #import "GCPGeocoder.h"
 
 @implementation GCPGeocoder
@@ -49,14 +57,16 @@
 - (NSDictionary *)locationDictionaryFromPlaceMark:(MKPlacemark *)aPlace {
     NSString *addressString = [[aPlace.addressDictionary objectForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
     
-    NSDictionary *loc = [NSDictionary dictionaryWithObjectsAndKeys:
-                         [NSNumber numberWithDouble:aPlace.location.coordinate.latitude], @"latitude",
-                         [NSNumber numberWithDouble:aPlace.location.coordinate.longitude ], @"longitude",
-                         addressString, @"address",
-                         aPlace.thoroughfare, @"streetName",
-                         aPlace.subThoroughfare, @"streetNumber",
-                         aPlace.locality, @"locality",
-                         aPlace.postalCode, @"postalCode", nil];
+    NSDictionary *loc = [[NSDictionary alloc] initWithObjectsAndKeys:
+                        [NSNumber numberWithDouble:aPlace.location.coordinate.latitude], @"lat",
+                        [NSNumber numberWithDouble:aPlace.location.coordinate.longitude ], @"lng",
+                        addressString, @"formattedAddress",
+                        aPlace.thoroughfare, @"street",
+                        aPlace.subThoroughfare ? aPlace.subThoroughfare : @"", @"streetNumber",
+                        aPlace.locality ? aPlace.locality : @"", @"town",
+                        aPlace.country ? aPlace.country : @"", @"country",
+                        aPlace.ISOcountryCode ? aPlace.ISOcountryCode : [aPlace.addressDictionary valueForKey:@"CountryCode"], @"countryCode",
+                        aPlace.postalCode ? aPlace.postalCode : @"", @"postalCode", nil];                         
     return loc;
 }
 

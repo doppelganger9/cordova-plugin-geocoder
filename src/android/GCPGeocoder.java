@@ -1,3 +1,11 @@
+/**
+ * GCPGeocoder.java -- Apache Cordova Geocoder Plugin / android platform implementation.
+ *
+ * Copyright (C) 2017 David LACOURT
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE file for details.
+ */
 package org.apache.cordova.geocoder;
 
 import org.apache.cordova.CordovaPlugin;
@@ -128,12 +136,18 @@ public class GCPGeocoder extends CordovaPlugin {
 
 		JSONObject coords = new JSONObject();
 
-		coords.put("latitude", addr.getLatitude());
-		coords.put("longitude", addr.getLongitude());
+		coords.put("lat", addr.getLatitude());
+		coords.put("lng", addr.getLongitude());
+		coords.put("street", addr.getThoroughfare());
+		coords.put("streetNumber", addr.getSubThoroughfare());
+		coords.put("town", addr.getLocality());
+		coords.put("country", addr.getCountryName());
+		coords.put("postalCode", addr.getPostalCode());
+		coords.put("countryCode", addr.getCountryCode());
 
         String addressStr = getAddressAsString(addr);
         if (addressStr != null) {
-            coords.put("address", addressStr);
+            coords.put("formattedAddress", addressStr);
         }
 
         return coords;

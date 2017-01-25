@@ -1,3 +1,13 @@
+<!--
+#
+# README.md -- Apache Cordova Geocoder Plugin / Read Me file.
+#
+# Copyright (C) 2017 David LACOURT
+#
+# This software may be modified and distributed under the terms
+# of the MIT license.  See the LICENSE file for details.
+#
+-->
 
 # Apache Cordova Geocoder Plugin
 
@@ -17,6 +27,8 @@ or, better, directly with the repo URL :
 
 *Prerequisite* : you have all the prerequisite to develop, build and run ios and/or android platforms for Cordova.
 
+The Sample app provided uses Apache Cordova Plugin test-framework.
+
 You can run the sample app to see the plugin in action. Open ios simulator or android emulator.
 
     cd sample
@@ -25,8 +37,15 @@ You can run the sample app to see the plugin in action. Open ios simulator or an
     
     # to run ios platform:    
     cordova run ios
+    
     # to run android platform:    
     cordova run android
+
+If you change something, to quickly launch the tests :
+
+    # (still in sample directory)
+    cordova plugin remove cordova-plugin-geocoder-tests cordova-plugin-geocoder && cordova plugin add .. ../tests && cordova run android
+    cordova plugin remove cordova-plugin-geocoder-tests cordova-plugin-geocoder && cordova plugin add .. ../tests && cordova run ios
 
 You can then enter Safari development menu or Chrome inspect to debug the webviews and test
 the plugin from the Inspector Console.
@@ -68,22 +87,28 @@ To Forward geocode a given address to find coordinates.
 
 ### Sample response
 
-    iOS :
+For iOS platform :
     {
-        "address":"221B Baker Street, London, NW1, England",
-        "locality":"London",
-        "longitude":-0.1582827815654968,
-        "streetName":"Baker Street",
-        "postalCode":"NW1",
-        "latitude":51.5231895720848,
-        "streetNumber":"221B"
+        "street": "Rue de Paras",
+        "country": "France",
+        "formattedAddress": "Rue de Paras, 07100 Annonay, France",
+        "town": "Annonay",
+        "postalCode": "07100",
+        "countryCode": "FR",
+        "lat": 45.2405404,
+        "lng": 4.6662105,
+        "streetNumber": ""
     }
 
-    android :
+For android platform :
     {
-        "latitude":48.8561594,
-        "longitude":2.4254903,
-        "address":"Rue de Paris, Montreuil, France"
+        "lat": 48.8561594,
+        "lng": 2.4254903,
+        "street": "Rue de Paris",
+        "town": "Montreuil",
+        "country": "France",
+        "countryCode": "FR",
+        "formattedAddress": "Rue de Paris, Montreuil, France"
     }
 
 ## navigator.geocoder.geocodeString, with more than one result
@@ -112,40 +137,49 @@ To forward geocode a given address with multiple results.
 
 ### Sample response
 
-    iOS :
-    [
-        {
-            "address":"221B Baker Street, London, NW1, England",
-            "locality":"London",
-            "longitude":-0.1582827815654968,
-            "streetName":"Baker Street",
-            "postalCode":"NW1",
-            "latitude":51.5231895720848,
-            "streetNumber":"221B"
-        },
-        {
-            "address":"221B Baker St, London ON, Canada",
-            "locality":"London",
-            "longitude":-81.24608566470123,
-            "streetName":"Baker St",
-            "postalCode":"N6C",
-            "latitude":42.96739489307311,
-            "streetNumber":"221B"
-        }
-    ]
+For iOS platform :
+    [{
+        "street": "Rue de Paras",
+        "country": "France",
+        "formattedAddress": "Rue de Paras, 07100 Annonay, France",
+        "town": "Annonay",
+        "postalCode": "07100",
+        "countryCode": "FR",
+        "lat": 45.2405404,
+        "lng": 4.6662105,
+        "streetNumber": ""
+    }, {
+        "street": "Rue de Paras",
+        "country": "France",
+        "formattedAddress": "Rue de Paras, 07100 Annonay, France",
+        "town": "Annonay",
+        "postalCode": "07100",
+        "countryCode": "FR",
+        "lat": 45.2403046,
+        "lng": 4.6652662,
+        "streetNumber": ""
+    }]
 
-    android :
-    [
-        {
-            "latitude":48.8561594,
-            "longitude":2.4254903,
-            "address":"Rue de Paris, Montreuil, France"
-        },{
-            "latitude":48.8239611,
-            "longitude":2.4099273,
-            "address":"Rue de Paris, Charenton-le-Pont, France"
-        }
-    ]
+
+For android platform :
+    [{
+        "lat": 48.8561594,
+        "lng": 2.4254903,
+        "street": "Rue de Paris",
+        "town": "Montreuil",
+        "country": "France",
+        "countryCode": "FR",
+        "formattedAddress": "Rue de Paris, Montreuil, France"
+    }, {
+        "lat": 48.8239611,
+        "lng": 2.4099273,
+        "street": "Rue de Paris",
+        "town": "Charenton-le-Pont",
+        "country": "France",
+        "countryCode": "FR",
+        "formattedAddress": "Rue de Paris, Charenton-le-Pont, France"
+    }]
+
 
 ## navigator.geocoder.reverseGeocodeLatLong
 
@@ -174,20 +208,32 @@ To reverse geocode a given Latitude, Longitude position to find a corresponding 
     
 ### Sample response
 
-    iOS :
+For iOS platform :
     {
-        "address":"Sherlock Holmes Museum, 239 Baker Street, London, NW1 6XE, England",
-        "locality":"London",
-        "longitude":-0.1585802,
-        "streetName":"Baker Street",
-        "postalCode":"NW1 6XE",
-        "latitude":51.5237492,
-        "streetNumber":"239"
+        "street": "Baker Street",
+        "country": "United Kingdom",
+        "formattedAddress": "Sherlock Holmes Museum, 239 Baker Street, London, NW1 6XE, England",
+        "town": "London",
+        "postalCode": "NW1 6XE",
+        "countryCode": "GB",
+        "lat": 51.5237492,
+        "lng": -0.1585802,
+        "streetNumber": "239"
     }
     
-    android :
+For android platform :
     {
-        "latitude":48.9241631,
-        "longitude":2.3577677,
-        "address":"211 Mail de l'Ellipse, 93200 Saint-Denis, France"
+        "lat": 51.5237737,
+        "lng": -0.1585369,
+        "street": "Baker Street",
+        "streetNumber": "221B",
+        "town": "London",
+        "country": "United Kingdom",
+        "postalCode": "NW1 6XE",
+        "countryCode": "GB",
+        "formattedAddress": "221B Baker Street, Marylebone, London, NW1 6XE, UK"
     }
+    
+## LICENSE
+
+see LICENSE
