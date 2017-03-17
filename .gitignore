@@ -18,6 +18,7 @@ sample/platforms
 sample/plugins
 sample/.idea
 
+node_modules/
 
 
 

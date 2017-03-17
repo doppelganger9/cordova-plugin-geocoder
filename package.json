@@ -1,0 +1,39 @@
+{
+    "name": "cordova-plugin-geocoder",
+    "version": "0.2.1",
+    "description": "Apache Cordova Geocoder Plugin",
+    "cordova": {
+        "id": "cordova-plugin-geocoder",
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/doppelganger9/cordova-plugin-geocoder.git#0.2.1"
+    },
+    "keywords": [
+        "cordova",
+        "geocoder",
+        "ecosystem:cordova",
+        "cordova-android",
+        "cordova-ios"
+    ],
+    "engines": [{
+            "name": "cordova-android",
+            "version": ">=5.1.0"
+        },
+        {
+            "name": "cordova-ios",
+            "version": ">=4.0.0"
+        }
+    ],
+
+    "author": "David LACOURT",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/doppelganger9/cordova-plugin-geocoder/issues"
+    },
+    "homepage": "https://https://github.com/doppelganger9/cordova-plugin-geocoder#README"
+}
